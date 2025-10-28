@@ -1,12 +1,473 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My GitHub Profile Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owori Juma Joseph · Lead Software Developer</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0f172a;
+            --bg-alt: rgba(15, 23, 42, 0.85);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-strong: #22d3ee;
+            font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.15), transparent 55%),
+                        radial-gradient(circle at 80% 10%, rgba(34, 211, 238, 0.12), transparent 50%),
+                        linear-gradient(160deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        main {
+            width: min(1100px, 100%);
+            display: grid;
+            gap: 2rem;
+        }
+
+        .glass {
+            background: var(--bg-alt);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            padding: clamp(1.75rem, 4vw, 2.5rem);
+        }
+
+        header.hero {
+            display: grid;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .hero__title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin: 0;
+            letter-spacing: -0.04em;
+        }
+
+        .hero__subtitle {
+            color: var(--muted);
+            margin: 0;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            line-height: 1.6;
+        }
+
+        .hero__cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+            padding: 0.75rem 1.4rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #0f172a;
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn.secondary {
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: var(--text);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(34, 211, 238, 0.2);
+        }
+
+        section {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0.5rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 0.35rem;
+            font-size: 1.15rem;
+        }
+
+        .timeline-item span {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pill {
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 900px) {
+            header.hero {
+                grid-template-columns: 2fr 1.2fr;
+                align-items: center;
+            }
+
+            .hero__visual {
+                justify-self: end;
+            }
+
+            .grid.two-columns {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: grid;
+            gap: 0.75rem;
+            transition: transform 180ms ease, border-color 180ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        a {
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to my GitHub Profile Page</h1>
-<p>My name is Owori Juma and I am a software developer.</p>
-<p>I have experience with languages such as Java, Python, and JavaScript.</p>
-<p>You can find my GitHub profile <a href="https://github.com/oworijuma">here</a>.</p>
+    <main>
+        <header class="hero glass">
+            <div>
+                <p class="pill" style="width:max-content">Lead Software Developer · Nairobi, Kenya</p>
+                <h1 class="hero__title">Owori Juma Joseph</h1>
+                <p class="hero__subtitle">Senior engineer with 9+ years of experience guiding teams across fintech, e-governance, and telco domains. Expert in Java and the Spring ecosystem, designing resilient systems that power payment gateways, tax platforms, and large-scale integrations.</p>
+                <div class="hero__cta">
+                    <a class="btn primary" href="mailto:joworijuma@gmail.com">Email joworijuma@gmail.com</a>
+                    <a class="btn secondary" href="https://www.linkedin.com/in/oworijuma" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a class="btn secondary" href="https://github.com/owori" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="card" style="text-align:left;">
+                    <p style="margin:0;color:var(--muted);">Personal Info</p>
+                    <p style="margin:0;font-size:0.95rem;">Address: 13788-00100 Nairobi, Kenya</p>
+                    <p style="margin:0;font-size:0.95rem;">Phone: +254 718 551 113</p>
+                    <p style="margin:0;font-size:0.95rem;">Email: joworijuma@gmail.com</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="glass">
+            <h2>Professional Summary</h2>
+            <div class="grid two-columns" style="align-items:start;">
+                <div>
+                    <p>As a seasoned software engineer and consultant, I have steered mission-critical solutions for financial institutions, government agencies, and humanitarian organizations across East Africa. My expertise spans microservices architecture, API design, secure integrations, and leading cross-functional teams from discovery through deployment.</p>
+                </div>
+                <div class="card" style="gap:0.5rem;">
+                    <h3 style="margin:0;font-size:1.05rem;">Core Impact</h3>
+                    <ul style="margin:0 0 0 1rem;padding:0;color:var(--muted);">
+                        <li>Delivered tax collection, PAYE, and return filing systems adopted by national agencies.</li>
+                        <li>Architected payment platforms and POS integrations for major banks and telcos.</li>
+                        <li>Mentored engineering teams on secure coding, DevOps, and agile delivery practices.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <h3>Senior Java/Spring Backend Engineer (Contractor) · Sandel Labs</h3>
+                    <span>Apr 2023 — Present</span>
+                    <p>Designing and building secure backend services for new financial products, translating functional requirements into production-grade Spring Boot solutions with automated documentation.</p>
+                    <div class="pill-group">
+                        <span class="pill">Spring Boot</span>
+                        <span class="pill">Java</span>
+                        <span class="pill">REST APIs</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <h3>Senior Backend Developer · Tooja</h3>
+                    <span>Feb 2022 — Jan 2023</span>
+                    <p>Delivered the company&apos;s first technical specification, developed core financial services, automated testing, and improved deployment readiness through CI documentation and estimates.</p>
+                    <div class="pill-group">
+                        <span class="pill">Microservices</span>
+                        <span class="pill">CI/CD</span>
+                        <span class="pill">API Design</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <h3>MIS Consultant · KYEOP Project (MSD)</h3>
+                    <span>May 2021 — Jan 2022</span>
+                    <p>Advised on best practices for mobile application development, reviewed project documentation, and collaborated on the MIS strategy and roadmap.</p>
+                    <div class="pill-group">
+                        <span class="pill">Android</span>
+                        <span class="pill">Stakeholder Management</span>
+                        <span class="pill">Process Improvement</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <h3>Senior Software Engineer · Tracom Payment Services</h3>
+                    <span>Jan 2019 — Apr 2021</span>
+                    <p>Led delivery of secure retail applications, mentored junior engineers, conducted architectural reviews, and guided quality assurance for large payment integrations.</p>
+                    <div class="pill-group">
+                        <span class="pill">Java</span>
+                        <span class="pill">Spring</span>
+                        <span class="pill">Payments</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <h3>Senior Software Engineer · Seven Limited</h3>
+                    <span>Nov 2014 — Nov 2018</span>
+                    <p>Designed enterprise-grade solutions, led technical workshops, improved agile delivery practices, and provided customer support on high-priority issues.</p>
+                    <div class="pill-group">
+                        <span class="pill">Agile</span>
+                        <span class="pill">System Design</span>
+                        <span class="pill">Client Support</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <h3>Software Developer · OneTech Solutions</h3>
+                    <span>Aug 2013 — Oct 2014</span>
+                    <p>Developed custom applications for government and private sector clients, coordinated with international partners, and optimized project documentation.</p>
+                    <div class="pill-group">
+                        <span class="pill">.NET</span>
+                        <span class="pill">Client Coordination</span>
+                        <span class="pill">Documentation</span>
+                    </div>
+                </article>
+                <article class="timeline-item">
+                    <h3>Junior Software Developer · Niamoi Limited</h3>
+                    <span>Jan 2013 — Jul 2013</span>
+                    <p>Implemented payment management and security solutions, supported POS terminal integrations, and provided nationwide customer support.</p>
+                    <div class="pill-group">
+                        <span class="pill">POS Systems</span>
+                        <span class="pill">Customer Support</span>
+                        <span class="pill">Testing</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="glass">
+            <h2>Selected Projects</h2>
+            <div class="grid two-columns">
+                <article class="card">
+                    <h3>LTax Revenue Collection System</h3>
+                    <p>Enterprise platform for automating VAT, PAYE, and filing returns, including document validation, payment reconciliation, and stakeholder dashboards adopted by regional tax authorities.</p>
+                    <div class="pill-group">
+                        <span class="pill">Spring Boot</span>
+                        <span class="pill">Microservices</span>
+                        <span class="pill">Secure Integrations</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>Paywell Electricity Token Vending</h3>
+                    <p>Designed prepaid electricity vending solution connecting consumers and next-gen smart meters via Itron systems, integrating with KPLC revenue assurance workflows.</p>
+                    <div class="pill-group">
+                        <span class="pill">Java</span>
+                        <span class="pill">Event-Driven</span>
+                        <span class="pill">Device Integration</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>eGate Airport Automation</h3>
+                    <p>Automated airport gate control and access management platform for aviation authorities, coordinating passenger validation and card issuance across agencies.</p>
+                    <div class="pill-group">
+                        <span class="pill">Java</span>
+                        <span class="pill">Angular</span>
+                        <span class="pill">Systems Integration</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <h3>Digital Fleet Solution</h3>
+                    <p>Secure payment and management solution for transport operators, featuring centralized monitoring of POS terminals, automated updates, and fraud prevention controls.</p>
+                    <div class="pill-group">
+                        <span class="pill">Security</span>
+                        <span class="pill">POS Terminals</span>
+                        <span class="pill">Monitoring</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="glass">
+            <h2>Technical Toolkit</h2>
+            <div class="grid two-columns">
+                <div>
+                    <h3 style="margin:0 0 0.5rem;">Languages &amp; Frameworks</h3>
+                    <div class="pill-group">
+                        <span class="pill">Java</span>
+                        <span class="pill">TypeScript</span>
+                        <span class="pill">Python</span>
+                        <span class="pill">JavaScript</span>
+                        <span class="pill">Angular</span>
+                        <span class="pill">Vaadin</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin:0 0 0.5rem;">Platforms &amp; Patterns</h3>
+                    <div class="pill-group">
+                        <span class="pill">Spring Boot</span>
+                        <span class="pill">Microservices</span>
+                        <span class="pill">Event-Driven Design</span>
+                        <span class="pill">RESTful APIs</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin:0 0 0.5rem;">DevOps &amp; Tooling</h3>
+                    <div class="pill-group">
+                        <span class="pill">AWS</span>
+                        <span class="pill">CI/CD</span>
+                        <span class="pill">JIRA</span>
+                        <span class="pill">Jenkins</span>
+                        <span class="pill">Confluence</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin:0 0 0.5rem;">Practices</h3>
+                    <div class="pill-group">
+                        <span class="pill">Secure Coding</span>
+                        <span class="pill">Quality Assurance</span>
+                        <span class="pill">Agile Coaching</span>
+                        <span class="pill">Mentorship</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass">
+            <h2>Education &amp; Certifications</h2>
+            <div class="grid two-columns">
+                <article class="card">
+                    <h3>BSc. Information Technology</h3>
+                    <span style="color:var(--muted);">Strathmore University · Jul 2010 — Apr 2014</span>
+                    <p>Graduated with upper division honors. Focused on enterprise software development, systems analysis, and secure architectures.</p>
+                </article>
+                <article class="card">
+                    <h3>KCSE</h3>
+                    <span style="color:var(--muted);">Friends School Kamusinga · 2004 — 2008</span>
+                    <p>Class honors with strong foundation in mathematics, physics, and computer studies.</p>
+                </article>
+                <article class="card">
+                    <h3>Leadership Highlights</h3>
+                    <p>Team Lead, Software Department (Tracom Services) · Member, Representative Tracom Welfare · Class Honors.</p>
+                </article>
+                <article class="card">
+                    <h3>Professional Development</h3>
+                    <p>Training on secure coding, test automation, and stakeholder communication across multiple client engagements.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="glass">
+            <h2>Leadership &amp; Community</h2>
+            <div class="grid two-columns">
+                <article class="card">
+                    <h3>Mentorship &amp; Coaching</h3>
+                    <p>Guides junior engineers on test-driven development, documentation, and peer reviews. Leads agile ceremonies ensuring clarity of deliverables and alignment with stakeholder expectations.</p>
+                </article>
+                <article class="card">
+                    <h3>Stakeholder Collaboration</h3>
+                    <p>Partners with banks, telecoms, and government agencies to map business processes, prioritize requirements, and manage risk across multi-year transformation projects.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="glass">
+            <h2>Referees</h2>
+            <div class="grid two-columns">
+                <article class="card">
+                    <h3>Samuel Wainaina</h3>
+                    <p style="margin:0;color:var(--muted);">CEO · Tecadle Services LTD</p>
+                    <p style="margin:0;">Phone: +254 715 577 335</p>
+                    <p style="margin:0;">Email: samuel@tecadle.com</p>
+                </article>
+                <article class="card">
+                    <h3>Jackson Kipkurgaet</h3>
+                    <p style="margin:0;color:var(--muted);">PMO · Tracom Service Limited</p>
+                    <p style="margin:0;">Phone: +254 722 809 266</p>
+                    <p style="margin:0;">Email: kipkurgaet@gmail.com</p>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            © <span id="year"></span> Owori Juma Joseph. Crafted with care in Nairobi.
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
