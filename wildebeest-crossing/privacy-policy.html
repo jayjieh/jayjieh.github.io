@@ -42,13 +42,14 @@
 <h2>1v1 races and your VS wallet (Google Firebase)</h2>
 <p>If you open VS, the game signs you in anonymously with Google Firebase Authentication. No name, email or phone number is asked for. Firebase gives you a random account ID, and the game stores the following with it on Google Cloud servers (Firebase, region europe-west1):</p>
 <ul>
-  <li>a generated player name (for example "Gnu #4F2A") and the coat you wear, shown to your rival,</li>
+  <li>your racing name, shown to your rival: one you choose, or a generated one such as "Gnu #4F2A", and the coat you wear,</li>
+  <li>reports other players make about a racing name, used only to remove offensive names,</li>
   <li>your VS wallet balance, the coins you move in or out, and a record of your stakes and payouts,</li>
   <li>your races: who you raced, the stake, the result, your time, grass eaten and hearts left,</li>
   <li>while a race is running, your wildebeest's position on the river, sent to your rival a few times a second and deleted about ten minutes after the race,</li>
   <li>friend codes you create, which expire after 24 hours.</li>
 </ul>
-<p>Coins have no cash value and cannot be exchanged for money. We use this information only to run races, settle stakes fairly and prevent cheating.</p>
+<p>Racing names are checked for offensive words. A name that several players report is removed, and its owner goes back to a generated name. Coins have no cash value and cannot be exchanged for money. We use this information only to run races, settle stakes fairly and prevent cheating.</p>
 
 <h2>Notifications (Firebase Cloud Messaging)</h2>
 <p>If you allow notifications, the game stores a Firebase installation ID for your device with your online account, your time zone, and the day you last crossed the Daily Crossing and your streak. We use them to tell you when a rival is found, a friend takes your code or a race is settled, to remind you about the Daily Crossing in the evening, and to send occasional news about seasons and the game. You can turn each kind off in Settings → Notifications, or turn notifications off for the game in your phone's settings.</p>
