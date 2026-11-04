@@ -1,381 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owori Juma · Software Developer</title>
-    <style>
-        :root {
-            color-scheme: light dark;
-            --bg: #0f172a;
-            --bg-alt: rgba(15, 23, 42, 0.85);
-            --text: #e2e8f0;
-            --muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-strong: #22d3ee;
-            font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Owori Juma · Apps</title>
+<meta name="description" content="Neno Craft, BuzzingPort, Wildebeest Crossing and AutiTunza: games and everyday apps by Owori Juma. Wildebeest Crossing is looking for testers on Google Play.">
+<meta property="og:title" content="Apps by Owori Juma">
+<meta property="og:description" content="Play with words. Find your next night out. Cross the Mara. Care with confidence.">
+<meta property="og:image" content="https://jayjieh.github.io/assets/apps/wildebeest/banner.png">
+<link rel="icon" href="assets/apps/wildebeest/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf7f0;
+    --surface: #ffffff;
+    --ink: #1e1b16;
+    --muted: #6b6257;
+    --line: rgba(30, 27, 22, 0.1);
+    --shadow: 0 18px 40px rgba(60, 40, 10, 0.12);
+    /* One colour per app, taken from its own artwork. */
+    --neno: #4b3fd0;
+    --buzz: #e5283a;
+    --wild: #c47a1c;
+    --tunza: #1f7a6d;
+    --tunza-orange: #e6923b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15120e;
+      --surface: #201c17;
+      --ink: #f5eee3;
+      --muted: #b6aa98;
+      --line: rgba(245, 238, 227, 0.12);
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      --neno: #9b93ff;
+      --buzz: #ff5a69;
+      --wild: #f2b33d;
+      --tunza: #4cc2ad;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 500 17px/1.6 "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap { width: min(1120px, 100%); margin: 0 auto; padding: 0 16px; }
 
-        * {
-            box-sizing: border-box;
-        }
+  /* Top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; }
+  .brand { font: 800 20px/1 "Baloo 2", sans-serif; text-decoration: none; letter-spacing: -0.01em; }
+  .brand span { color: var(--muted); font-weight: 700; }
+  .top nav { display: flex; gap: 18px; font-weight: 700; font-size: 15px; }
+  .top nav a { text-decoration: none; color: var(--muted); }
+  .top nav a:hover { color: var(--ink); }
+  .top nav a { white-space: nowrap; }
+  @media (max-width: 520px) {
+    .top nav { gap: 14px; font-size: 14px; }
+    .top nav a:first-child { display: none; }
+    .brand span { display: none; }
+  }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.15), transparent 55%),
-                        radial-gradient(circle at 80% 10%, rgba(34, 211, 238, 0.12), transparent 50%),
-                        linear-gradient(160deg, #020617 0%, #0f172a 50%, #1e293b 100%);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            padding: 4rem 1.5rem 6rem;
-        }
+  /* Hero */
+  .hero { display: grid; gap: 40px; align-items: center; padding: 36px 0 56px; }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 6px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 800; font-size: 14px; color: var(--muted); }
+  .kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--tunza-orange); }
+  .lines { margin: 0; font: 800 clamp(38px, 6.4vw, 70px)/1.02 "Baloo 2", sans-serif; letter-spacing: -0.02em; }
+  .lines a { display: block; text-decoration: none; width: fit-content; transition: transform 160ms ease; }
+  .lines a:hover { transform: translateX(6px); }
+  .lines .l-neno { color: var(--neno); }
+  .lines .l-buzz { color: var(--buzz); }
+  .lines .l-wild { color: var(--wild); }
+  .lines .l-tunza { color: var(--tunza); }
+  .lead { max-width: 560px; margin: 22px 0 28px; font-size: 19px; color: var(--muted); }
+  .lead b { color: var(--ink); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-weight: 800; text-decoration: none; transition: transform 160ms ease, box-shadow 160ms ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn--wild { background: linear-gradient(135deg, #f2b33d, #c47a1c); color: #2a1a06; box-shadow: 0 10px 24px rgba(196, 122, 28, 0.35); }
+  .btn--ghost { border: 2px solid var(--line); }
 
-        main {
-            width: min(1100px, 100%);
-            display: grid;
-            gap: 2rem;
-        }
+  /* Hero art: the four icons as a playful stack */
+  .icons { position: relative; width: min(380px, 80vw); aspect-ratio: 1; margin: 0 auto; }
+  .icons a { position: absolute; width: 47%; aspect-ratio: 1; border-radius: 22%; overflow: hidden; box-shadow: var(--shadow); transition: transform 200ms ease; }
+  .icons img { width: 100%; height: 100%; object-fit: cover; }
+  .icons a:nth-child(1) { left: 0; top: 4%; transform: rotate(-8deg); }
+  .icons a:nth-child(2) { right: 0; top: 0; transform: rotate(6deg); }
+  .icons a:nth-child(3) { left: 4%; bottom: 0; transform: rotate(5deg); }
+  .icons a:nth-child(4) { right: 3%; bottom: 3%; transform: rotate(-6deg); }
+  .icons a:hover { transform: rotate(0) scale(1.06); z-index: 2; }
+  .icons .tag { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-4deg); z-index: 3; padding: 8px 14px; border-radius: 14px; background: var(--ink); color: var(--bg); font: 800 15px/1.2 "Baloo 2", sans-serif; text-align: center; white-space: nowrap; box-shadow: var(--shadow); }
 
-        .glass {
-            background: var(--bg-alt);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
-            backdrop-filter: blur(16px);
-            padding: clamp(1.75rem, 4vw, 2.5rem);
-        }
+  @media (min-width: 900px) {
+    .hero { grid-template-columns: 1.35fr 1fr; padding: 56px 0 80px; }
+  }
 
-        header.hero {
-            display: grid;
-            gap: 1.5rem;
-            align-items: center;
-        }
+  /* Section headings */
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin: 0 0 24px; }
+  .section-head h2 { margin: 0; font: 800 clamp(28px, 4vw, 40px)/1.1 "Baloo 2", sans-serif; }
+  .section-head p { margin: 0; color: var(--muted); }
 
-        .hero__title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            margin: 0;
-            letter-spacing: -0.04em;
-        }
+  /* App cards */
+  .apps { display: grid; gap: 28px; padding-bottom: 72px; }
+  @media (min-width: 860px) { .apps { grid-template-columns: 1fr 1fr; } }
+  .app { --c: var(--ink); position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); scroll-margin-top: 24px; }
+  .app--neno { --c: var(--neno); }
+  .app--buzz { --c: var(--buzz); }
+  .app--wild { --c: var(--wild); }
+  .app--tunza { --c: var(--tunza); }
+  .app__banner { aspect-ratio: 1024 / 500; background: var(--line); }
+  .app__banner img { width: 100%; height: 100%; object-fit: cover; }
+  .app__body { position: relative; display: flex; flex-direction: column; gap: 10px; flex: 1; padding: 0 24px 24px; }
+  .app__row { display: flex; align-items: flex-start; gap: 14px; margin-top: -34px; }
+  .app__icon { width: 76px; height: 76px; border-radius: 20px; border: 4px solid var(--surface); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18); background: var(--surface); flex: none; }
+  .app__title { min-width: 0; padding-top: 44px; }
+  .app__title h3 { margin: 0; font: 800 26px/1.1 "Baloo 2", sans-serif; }
+  .app__title p { margin: 2px 0 0; font-size: 14px; font-weight: 700; color: var(--muted); }
+  .status { position: absolute; top: -40px; right: 20px; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 800; background: var(--surface); color: var(--muted); border: 1px solid var(--line); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12); }
+  .status--live { background: #1f9d55; color: #fff; border-color: transparent; }
+  .status--live::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #c6f6d5; vertical-align: 1px; }
+  .hook { margin: 6px 0 0; font: 800 21px/1.25 "Baloo 2", sans-serif; color: var(--c); }
+  .desc { margin: 0; color: var(--muted); }
+  .desc b { color: var(--ink); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; padding: 0; list-style: none; }
+  .chips li { padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--c); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 12px; }
+  .btn--app { background: var(--c); color: #fff; }
+  .app--wild .btn--app { background: linear-gradient(135deg, #f2b33d, #c47a1c); color: #2a1a06; }
+  .app--wild { outline: 3px solid color-mix(in srgb, var(--wild) 55%, transparent); outline-offset: -3px; }
 
-        .hero__subtitle {
-            color: var(--muted);
-            margin: 0;
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
-            line-height: 1.6;
-        }
+  /* How testing works */
+  .testing { margin-bottom: 72px; padding: clamp(24px, 4vw, 44px); border-radius: 32px; background: linear-gradient(135deg, #2b6f9e 0%, #3a86b5 45%, #c47a1c 100%); color: #fff; }
+  .testing .section-head p { color: rgba(255, 255, 255, 0.85); }
+  .steps { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .steps li { counter-increment: s; padding: 20px; border-radius: 22px; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.25); }
+  .steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 10px; border-radius: 50%; background: #fff; color: #2b6f9e; font: 800 18px/1 "Baloo 2", sans-serif; }
+  .steps h3 { margin: 0 0 4px; font: 800 20px/1.2 "Baloo 2", sans-serif; }
+  .steps p { margin: 0 0 10px; color: rgba(255, 255, 255, 0.9); }
+  .steps a { font-weight: 800; }
+  .testing .btn { margin-top: 20px; background: #fff; color: #2b6f9e; }
 
-        .hero__cta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: 999px;
-            padding: 0.75rem 1.4rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 180ms ease, box-shadow 180ms ease;
-        }
-
-        .btn.primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-            color: #0f172a;
-            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.25);
-        }
-
-        .btn.secondary {
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            color: var(--text);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 18px 40px rgba(34, 211, 238, 0.2);
-        }
-
-        section {
-            display: grid;
-            gap: 1.25rem;
-        }
-
-        section h2 {
-            font-size: 1.5rem;
-            margin: 0;
-            letter-spacing: 0.02em;
-        }
-
-        .timeline {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: 0.5rem;
-            top: 0.35rem;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
-        }
-
-        .timeline-item h3 {
-            margin: 0 0 0.35rem;
-            font-size: 1.15rem;
-        }
-
-        .timeline-item span {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .pill-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .pill {
-            padding: 0.4rem 0.85rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .grid {
-            display: grid;
-            gap: 1.25rem;
-        }
-
-        @media (min-width: 900px) {
-            header.hero {
-                grid-template-columns: 2fr 1.2fr;
-                align-items: center;
-            }
-
-            .hero__visual {
-                justify-self: end;
-            }
-
-            .grid.two-columns {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        .card {
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(148, 163, 184, 0.12);
-            border-radius: 20px;
-            padding: 1.5rem;
-            display: grid;
-            gap: 0.75rem;
-            transition: transform 180ms ease, border-color 180ms ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(56, 189, 248, 0.4);
-        }
-
-        footer {
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        a {
-            color: inherit;
-        }
-    </style>
+  footer { padding: 28px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 16px; }
+</style>
 </head>
 <body>
-    <main>
-        <header class="hero glass">
-            <div>
-                <p class="pill" style="width:max-content">Available for full-time roles</p>
-                <h1 class="hero__title">Owori Juma</h1>
-                <p class="hero__subtitle">Software developer crafting reliable products with Java, Python, and JavaScript. I blend clean architecture with a passion for intuitive UX to help teams ship faster.</p>
-                <div class="hero__cta">
-                    <a class="btn primary" href="mailto:owori.juma@example.com">Let&apos;s collaborate</a>
-                    <a class="btn secondary" href="https://github.com/oworijuma" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-                </div>
-            </div>
-            <div class="hero__visual">
-                <div class="card" style="text-align:center;">
-                    <p style="margin:0;color:var(--muted);">Currently building</p>
-                    <h3 style="margin:0;font-size:1.35rem;">Cloud-native FinTech Solutions</h3>
-                    <p style="margin:0;font-size:0.95rem;color:var(--muted);">Leveraging microservices and event-driven patterns.</p>
-                </div>
-            </div>
-        </header>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#">Owori Juma <span>· Apps</span></a>
+    <nav>
+      <a href="#apps">Apps</a>
+      <a href="#test">Become a tester</a>
+      <a href="mailto:jayjieh@gmail.com">Contact</a>
+    </nav>
+  </header>
 
-        <section class="glass">
-            <h2>Experience</h2>
-            <div class="timeline">
-                <article class="timeline-item">
-                    <h3>Lead Software Engineer · BlueSky Finance</h3>
-                    <span>2022 — Present · Kampala, Uganda</span>
-                    <p>Architected a microservices platform that processes 500K+ monthly transactions, reducing deployment times by 40% with automated CI/CD pipelines.</p>
-                    <div class="pill-group">
-                        <span class="pill">Spring Boot</span>
-                        <span class="pill">Kafka</span>
-                        <span class="pill">Kubernetes</span>
-                    </div>
-                </article>
-                <article class="timeline-item">
-                    <h3>Software Developer · Horizon Labs</h3>
-                    <span>2019 — 2022 · Remote</span>
-                    <p>Delivered data-driven web applications with React and Django, collaborating with cross-functional teams to launch new product lines in under 12 weeks.</p>
-                    <div class="pill-group">
-                        <span class="pill">React</span>
-                        <span class="pill">Django</span>
-                        <span class="pill">PostgreSQL</span>
-                    </div>
-                </article>
-                <article class="timeline-item">
-                    <h3>Software Engineering Intern · CodeBridge</h3>
-                    <span>2018 — 2019 · Kampala, Uganda</span>
-                    <p>Automated manual reporting workflows and strengthened code quality by introducing test-driven development practices.</p>
-                    <div class="pill-group">
-                        <span class="pill">Python</span>
-                        <span class="pill">PyTest</span>
-                        <span class="pill">Git</span>
-                    </div>
-                </article>
-            </div>
-        </section>
+  <section class="hero">
+    <div>
+      <p class="kicker"><i></i>Games and everyday apps</p>
+      <h1 class="lines">
+        <a class="l-neno" href="#nenocraft">Play with words.</a>
+        <a class="l-buzz" href="#buzzingport">Find your next night out.</a>
+        <a class="l-wild" href="#wildebeest">Cross the Mara.</a>
+        <a class="l-tunza" href="#autitunza">Care with confidence.</a>
+      </h1>
+      <p class="lead">Four apps, one maker. Two games, an events app and a care companion, built for anyone with a phone. <b>Wildebeest Crossing is looking for testers on Google Play right now.</b></p>
+      <div class="ctas">
+        <a class="btn btn--wild" href="wildebeest-crossing/#test">Become a Wildebeest tester</a>
+        <a class="btn btn--ghost" href="#apps">Meet the apps</a>
+      </div>
+    </div>
+    <div class="icons" aria-label="App icons">
+      <a href="#nenocraft"><img src="assets/apps/nenocraft/icon.png" alt="Neno Craft icon" width="512" height="512"></a>
+      <a href="#buzzingport"><img src="assets/apps/buzzingport/icon.png" alt="BuzzingPort icon" width="512" height="512"></a>
+      <a href="#wildebeest"><img src="assets/apps/wildebeest/icon.png" alt="Wildebeest Crossing icon" width="512" height="512"></a>
+      <a href="#autitunza"><img src="assets/apps/autitunza/icon.png" alt="AutiTunza icon" width="192" height="192"></a>
+      <span class="tag">4 apps<br>1 maker</span>
+    </div>
+  </section>
 
-        <section class="glass">
-            <h2>Projects</h2>
-            <div class="grid two-columns">
-                <article class="card">
-                    <h3>NimbusPay</h3>
-                    <p>Payment orchestration platform enabling seamless mobile money and card transactions across East Africa with real-time risk scoring.</p>
-                    <div class="pill-group">
-                        <span class="pill">Java</span>
-                        <span class="pill">Quarkus</span>
-                        <span class="pill">Redis</span>
-                    </div>
-                </article>
-                <article class="card">
-                    <h3>HarvestIQ</h3>
-                    <p>Precision agriculture analytics suite that fuses IoT sensor data with predictive models to boost yield forecasts by up to 18%.</p>
-                    <div class="pill-group">
-                        <span class="pill">Python</span>
-                        <span class="pill">FastAPI</span>
-                        <span class="pill">TensorFlow</span>
-                    </div>
-                </article>
-                <article class="card">
-                    <h3>StreamPulse</h3>
-                    <p>Scalable event-processing pipeline delivering live insights for media streaming platforms with under 2s latency.</p>
-                    <div class="pill-group">
-                        <span class="pill">Node.js</span>
-                        <span class="pill">TypeScript</span>
-                        <span class="pill">AWS</span>
-                    </div>
-                </article>
-                <article class="card">
-                    <h3>CareConnect</h3>
-                    <p>Telemedicine web app featuring secure messaging, appointment scheduling, and AI-assisted triage for rural clinics.</p>
-                    <div class="pill-group">
-                        <span class="pill">React</span>
-                        <span class="pill">GraphQL</span>
-                        <span class="pill">Docker</span>
-                    </div>
-                </article>
-            </div>
-        </section>
+  <section id="apps">
+    <div class="section-head">
+      <h2>The apps</h2>
+      <p>Neno means "word" and Tunza means "care for" in Swahili.</p>
+    </div>
+    <div class="apps">
 
-        <section class="glass">
-            <h2>Technical Toolkit</h2>
-            <div class="grid two-columns">
-                <div>
-                    <h3 style="margin:0 0 0.5rem;">Languages</h3>
-                    <div class="pill-group">
-                        <span class="pill">Java</span>
-                        <span class="pill">Python</span>
-                        <span class="pill">JavaScript</span>
-                        <span class="pill">TypeScript</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="margin:0 0 0.5rem;">Platforms &amp; Tools</h3>
-                    <div class="pill-group">
-                        <span class="pill">AWS</span>
-                        <span class="pill">Docker</span>
-                        <span class="pill">Kubernetes</span>
-                        <span class="pill">CI/CD</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="margin:0 0 0.5rem;">Frameworks</h3>
-                    <div class="pill-group">
-                        <span class="pill">Spring Boot</span>
-                        <span class="pill">React</span>
-                        <span class="pill">Django</span>
-                        <span class="pill">FastAPI</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="margin:0 0 0.5rem;">Practices</h3>
-                    <div class="pill-group">
-                        <span class="pill">Domain-driven design</span>
-                        <span class="pill">Test automation</span>
-                        <span class="pill">Agile delivery</span>
-                        <span class="pill">Mentorship</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <article class="app app--neno" id="nenocraft">
+        <div class="app__banner"><img src="assets/apps/nenocraft/banner.png" alt="Neno Craft letter tiles spelling NENO CRAFT" width="1024" height="500" loading="lazy"></div>
+        <div class="app__body">
+          <span class="status">In closed testing</span>
+          <div class="app__row">
+            <img class="app__icon" src="assets/apps/nenocraft/icon.png" alt="" width="76" height="76">
+            <div class="app__title"><h3>Neno Craft</h3><p>Word puzzle · Android</p></div>
+          </div>
+          <p class="hook">Merge letters. Craft words.</p>
+          <p class="desc">Slide letter tiles together to build words before the board fills up. Chase the <b>Word of the Day</b>, earn coins, and use hints, shuffles and extra tiles when you're stuck. Quick to learn, hard to put down.</p>
+          <ul class="chips"><li>Word of the Day</li><li>Hints &amp; shuffles</li><li>Offline play</li></ul>
+          <div class="actions">
+            <a class="btn btn--app" href="mailto:jayjieh@gmail.com?subject=Neno%20Craft%20early%20access">Get notified</a>
+          </div>
+        </div>
+      </article>
 
-        <section class="glass">
-            <h2>Education &amp; Certifications</h2>
-            <div class="grid two-columns">
-                <article class="card">
-                    <h3>BSc. Computer Science</h3>
-                    <span style="color:var(--muted);">Makerere University · 2015 — 2018</span>
-                    <p>Graduated with honors. Specialized in distributed systems and human-computer interaction.</p>
-                </article>
-                <article class="card">
-                    <h3>AWS Certified Solutions Architect</h3>
-                    <span style="color:var(--muted);">2021</span>
-                    <p>Demonstrated expertise in designing and deploying scalable systems on the AWS platform.</p>
-                </article>
-            </div>
-        </section>
+      <article class="app app--buzz" id="buzzingport">
+        <div class="app__banner"><img src="assets/apps/buzzingport/banner.png" alt="BuzzingPort: Find your next experience" width="1024" height="500" loading="lazy"></div>
+        <div class="app__body">
+          <span class="status">In closed testing</span>
+          <div class="app__row">
+            <img class="app__icon" src="assets/apps/buzzingport/icon.png" alt="" width="76" height="76">
+            <div class="app__title"><h3>BuzzingPort</h3><p>Events &amp; tickets · Android</p></div>
+          </div>
+          <p class="hook">Find your next experience.</p>
+          <p class="desc">Discover concerts, shows and meet-ups, explore venues on the map and save the ones you love. Buy tickets in a few taps, even without an account, and keep your <b>entry QR code</b> ready on your phone.</p>
+          <ul class="chips"><li>Events near you</li><li>Fast checkout</li><li>QR tickets</li></ul>
+          <div class="actions">
+            <a class="btn btn--app" href="mailto:jayjieh@gmail.com?subject=BuzzingPort%20early%20access">Get notified</a>
+          </div>
+        </div>
+      </article>
 
-        <section class="glass">
-            <h2>Let&apos;s Connect</h2>
-            <p>If you&apos;re building resilient platforms or elegant digital experiences, I&apos;d love to collaborate.</p>
-            <div class="pill-group">
-                <a class="pill" href="mailto:owori.juma@example.com">owori.juma@example.com</a>
-                <a class="pill" href="https://www.linkedin.com/in/oworijuma" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a class="pill" href="https://github.com/oworijuma" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-        </section>
+      <article class="app app--wild" id="wildebeest">
+        <div class="app__banner"><img src="assets/apps/wildebeest/banner.png" alt="Wildebeest Crossing: a wildebeest crossing the Mara River past a crocodile" width="1024" height="500" loading="lazy"></div>
+        <div class="app__body">
+          <span class="status status--live">Testers wanted</span>
+          <div class="app__row">
+            <img class="app__icon" src="assets/apps/wildebeest/icon.png" alt="" width="76" height="76">
+            <div class="app__title"><h3>Wildebeest Crossing</h3><p>Arcade game · Phone, Android TV, PC</p></div>
+          </div>
+          <p class="hook">Cross the Mara. Dodge the crocs.</p>
+          <p class="desc">Guide a brave wildebeest across the Mara River. Steer with a joystick, tilt or your TV remote, eat the grass and reach the flag. Endless levels, a Daily Crossing, and <b>1v1 races</b> against friends.</p>
+          <ul class="chips"><li>Endless levels</li><li>1v1 races</li><li>Plays on TV</li></ul>
+          <div class="actions">
+            <a class="btn btn--app" href="wildebeest-crossing/#test">Become a tester</a>
+            <a class="btn btn--ghost" href="wildebeest-crossing/">About the game</a>
+          </div>
+        </div>
+      </article>
 
-        <footer>
-            © <span id="year"></span> Owori Juma. Crafted with care in Kampala.
-        </footer>
-    </main>
+      <article class="app app--tunza" id="autitunza">
+        <div class="app__banner"><img src="assets/apps/autitunza/banner.png" alt="AutiTunza: Small steps. Big love." width="1024" height="500" loading="lazy"></div>
+        <div class="app__body">
+          <span class="status">In development</span>
+          <div class="app__row">
+            <img class="app__icon" src="assets/apps/autitunza/icon.png" alt="" width="76" height="76">
+            <div class="app__title"><h3>AutiTunza</h3><p>Family care · Android</p></div>
+          </div>
+          <p class="hook">Small steps. Big love.</p>
+          <p class="desc">A companion for parents, teachers and therapists of autistic children. Plan daily routines, log moments in seconds, open a <b>Calm Mode</b> that works with no signal, and share clear reports with a child's doctor or school.</p>
+          <ul class="chips"><li>Routines</li><li>Calm Mode</li><li>Shareable reports</li></ul>
+          <div class="actions">
+            <a class="btn btn--app" href="mailto:jayjieh@gmail.com?subject=AutiTunza%20waitlist">Join the waitlist</a>
+          </div>
+        </div>
+      </article>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    </div>
+  </section>
+
+  <section class="testing" id="test">
+    <div class="section-head">
+      <h2>Become a tester</h2>
+      <p>Play Wildebeest Crossing before it's released. It takes two minutes.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Join the testers group</h3>
+        <p>Sign in with your Google account and tap Join group. It's instant.</p>
+        <a href="https://groups.google.com/g/wildebeest-crossing-testers">Join the group →</a>
+      </li>
+      <li>
+        <h3>Accept the invite on Google Play</h3>
+        <p>Open the test page and tap "Become a tester". Give it a few minutes after joining.</p>
+        <a href="https://play.google.com/apps/testing/com.jayjieh.wildebeest">Open the test page →</a>
+      </li>
+      <li>
+        <h3>Play and tell me what you think</h3>
+        <p>Install from the Play Store on your phone, TV or PC, and send feedback any time.</p>
+        <a href="mailto:jayjieh@gmail.com?subject=Wildebeest%20Crossing%20feedback">Send feedback →</a>
+      </li>
+    </ol>
+    <a class="btn" href="wildebeest-crossing/#test">Start with step 1</a>
+  </section>
+
+  <footer>
+    <span>© <span id="year">2026</span> Owori Juma</span>
+    <nav>
+      <a href="mailto:jayjieh@gmail.com">jayjieh@gmail.com</a>
+      <a href="wildebeest-crossing/privacy-policy.html">Wildebeest privacy</a>
+      <a href="wildebeest-crossing/terms-of-service.html">Wildebeest terms</a>
+    </nav>
+  </footer>
+</div>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
