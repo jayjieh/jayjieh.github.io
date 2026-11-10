@@ -21,6 +21,13 @@
   .tester p { margin: 0 0 12px; text-align: center; }
   .tester ol { margin: 0 0 12px; padding-left: 1.4rem; }
   .tester li { margin: 0 0 12px; }
+  .tester ul { margin: 4px 0 8px; padding-left: 1.2rem; color: var(--muted); }
+  .tester ul li { margin: 0 0 4px; }
+  .tester .need { text-align: left; color: var(--ink); }
+  .tester details { margin: 0 0 12px; }
+  .tester summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+  .ad { display: block; width: 100%; max-width: 320px; aspect-ratio: 9 / 16; margin: 28px auto 0; border-radius: 20px; background: #000; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+  .credits { margin-top: 20px; font-size: 13px; }
   .btn { display: inline-block; margin-top: 4px; padding: 8px 16px; border-radius: 999px; background: var(--accent); color: var(--bg); font-weight: 600; text-decoration: none; }
   .home { margin: 0 0 20px; text-align: left; font-size: 15px; font-weight: 600; }
   .home a { text-decoration: none; }
@@ -33,16 +40,50 @@
   <img src="icon.png" alt="Wildebeest Crossing icon">
   <h1>Wildebeest Crossing</h1>
   <p>Tilt your phone to guide a brave wildebeest across the Mara River. Eat the grass, dodge the crocodiles and reach the flag. The migration never ends.</p>
+  <video class="ad" controls playsinline preload="metadata" poster="ad-poster.jpg">
+    <source src="ad.mp4" type="video/mp4">
+    <a href="ad.mp4">Watch the trailer</a>
+  </video>
   <section class="tester" id="test">
     <h2>Become a tester</h2>
-    <p>Play the game on Android before it's released.</p>
+    <p>Play the game on Android before it's released. It's free and takes about two minutes.</p>
+    <p class="need"><strong>You need:</strong> an Android phone and the Google account you use in the Play Store. Use that same account for every step.</p>
     <ol>
-      <li>Join the testers group with your Google account. Joining is instant.<br>
-        <a class="btn" href="https://groups.google.com/g/wildebeest-crossing-testers">Join the testers group</a></li>
-      <li>Accept the test invite on Google Play, then install the game from the Play Store. It can take a few minutes after joining before the invite works.<br>
-        <a class="btn" href="https://play.google.com/apps/testing/com.jayjieh.wildebeest">Become a tester on Google Play</a></li>
+      <li><strong>Join the testers group.</strong>
+        <ul>
+          <li>Tap the button below and sign in with your Google account if asked.</li>
+          <li>Tap <em>Join group</em>, then <em>Join group</em> again to confirm. You can choose "No email" if you don't want messages.</li>
+          <li>You're in when the button changes to <em>Leave group</em>.</li>
+        </ul>
+        <a class="btn" href="https://groups.google.com/g/wildebeest-crossing-testers">1. Join the testers group</a></li>
+      <li><strong>Accept the test invite on Google Play.</strong>
+        <ul>
+          <li>Tap the button below, signed in with the same account.</li>
+          <li>Tap <em>Become a tester</em>. The page then says you are a tester.</li>
+          <li>If it says the app isn't available, wait a few minutes after joining the group and try again.</li>
+        </ul>
+        <a class="btn" href="https://play.google.com/apps/testing/com.jayjieh.wildebeest">2. Become a tester</a></li>
+      <li><strong>Download the game.</strong>
+        <ul>
+          <li>Tap the button below to open Wildebeest Crossing in the Play Store.</li>
+          <li>Tap <em>Install</em>, then <em>Play</em>.</li>
+        </ul>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.jayjieh.wildebeest">3. Download on Google Play</a></li>
+      <li><strong>Keep it installed and play.</strong> Please keep the game on your phone for at least 14 days. Google only lets it go public once enough testers have done that.</li>
     </ol>
+    <details>
+      <summary>Something not working?</summary>
+      <ul>
+        <li><strong>"App not available" or "Item not found":</strong> the Play Store is using a different Google account from the one that joined the group. Open the Play Store, tap your profile picture and switch to the right account.</li>
+        <li><strong>The invite page won't accept you:</strong> check that step 1 shows <em>Leave group</em>, wait a few minutes and reload.</li>
+        <li><strong>Still stuck, or found a bug?</strong> <a href="mailto:jayjieh@gmail.com">Email me</a> and I'll help.</li>
+      </ul>
+    </details>
   </section>
+  <p class="credits">Trailer footage from Wikimedia Commons:
+    <a href="https://commons.wikimedia.org/wiki/File:Wildebeest_herd_running_in_the_Maasai_Mara_National_Reserve.webm">Lebu Ayiga</a> (CC BY 4.0) and
+    <a href="https://commons.wikimedia.org/wiki/File:Wildebeests_at_Grumeti_River.webm">Bettina</a>
+    <a href="https://commons.wikimedia.org/wiki/File:Nile_crocodile_ambushes_a_wildebeest.webm">May</a> (CC BY 3.0), cropped and graded.</p>
   <nav>
     <a href="privacy-policy.html">Privacy policy</a>
     <a href="terms-of-service.html">Terms of service</a>
